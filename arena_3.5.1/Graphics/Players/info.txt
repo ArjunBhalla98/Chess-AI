@@ -1,0 +1,4 @@
+This is the directory for your player-picture-files from SCID, e.g.: gm.spf, historic.spf wikipedia.spf and FIDE.spf.
+
+
+Dies ist das Verzeichnis für eure Spieler-Bild-Dateien SCID, z.B.: gm.spf, historic.spf wikipedia.spf und FIDE.spf.

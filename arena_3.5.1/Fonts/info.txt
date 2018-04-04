@@ -1,0 +1,41 @@
+Directory for Arena's fonts, e.g. for figurine notation or 
+the chessboard. 
+
+If you have installed Arena with a setup program, these fonts 
+should already be installed.
+
+If you downloaded Arena as a zip file, you have to install 
+them with 'Fonts' in Windows Control Panel with 
+
+ 1) either "Start->Run", "control.exe fonts"
+ or 2) "Start->Settings->Control Panel->Fonts" 
+
+Then choose "File->Install New Font" from them menu.
+Go to the 'Fonts' directory of Arena or the directory 
+where you have the *.ttf-fonts saved. 
+
+Mark all the fonts you want to install.
+
+Click on "OK".
+
+----------------------------------------------------------------
+
+Verzeichnis für Arena-Schriftarten, z.B. für Figurine Notation 
+oder das Schachbrett. 
+
+Wenn Sie Arena über ein Setup installiert haben, dann sind 
+diese Schriftarten bereits installiert.
+
+Wenn Sie Arena in einer zip-Datei heruntergeladen haben, dann
+müssen Sie die Schriftarten installieren über 
+
+ 1) mit "Start->Ausführen", "control.exe fonts"
+ oder 2) Start->Einstellungen->Systemsteuerung->Schriftarten.
+ 
+Dann wählen Sie "Datei->Neue Schriftart installieren" aus dem
+Hauptmenü und wählen das Verzeichnis "Fonts" von Arena aus oder
+wo auch immer Sie die Dateien gespeichert haben.
+
+Markieren Sie alle Schriftarten, die Sie installieren möchten.
+
+Klicken Sie "OK".

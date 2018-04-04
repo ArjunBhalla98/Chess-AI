@@ -1,0 +1,19 @@
+[LastMove "1947927601"]
+[Event "Computer chess game"]
+[Site "DESKTOP-14L51IB"]
+[Date "2018.04.04"]
+[Round "?"]
+[White "Arjun Bhalla"]
+[Black "SOS 5.1 for Arena"]
+[Result "*"]
+[BlackElo "2000"]
+[Time "16:10:15"]
+[WhiteElo "2400"]
+[TimeControl "300"]
+[Termination "unterminated"]
+[PlyCount "0"]
+[WhiteType "human"]
+[BlackType "program"]
+
+ *
+

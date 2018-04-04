@@ -1,0 +1,326 @@
+Dies ist die Version 3.5 von Arena, der freien Schachoberfläche!
+------------------------------------------------------------------
+
+http://www.playwitharena.com
+
+Versionshistorie:
+----------------------------
+
+Arena 3.5.1, 2015-12-19 / Public Release
+   * Probleme mit Großen Schriftarten oder großenTitelzeilen beseitigt (Motorenverwaltung, Suche)
+   * Dual Monitor-Unterstützung verbessert: Maximieren auf dem zweiten Monitor funktioniert jetzt
+   * Turnier mit Ponder stoppt nicht mehr, wenn ein Motor aufgibt 
+   * Turnier mit Ponder: Arenabuch-Züge währen des Pondern führen nicht mehr zum Abbuch der Partie
+   * Turnier mit Ponder: Evtl. gekürzte Hauptvarianten und ungültige moveerror Einträge in der Logdatei entfernt
+   * Arena startet in Turnieren nun immer nach 20 Partien oder weniger
+   * Turnierdialog: Standard Dateinamen setzen berücksichtigt den Pfad der .at-Datei
+   * Linux/Mac: Wine-Unterstützung verbessert: Neuzeichnen ist nun sauber
+   * Hauptvarianten können nun mit Umschalt+Strg+Mausrad horizontal gescrollt werden
+   * Gaviota Endspieldatenbanken-Motor aktualisiert
+   * engines.ini aktualisiert
+   * Seltenen Rochadefehler in Schach 960 entfernt: Wenn ein Turm von einem anderen Turm ersetzt wurde, war das rochieren mit ihm fälschlicherweise erlaubt
+   * Variantenbrett: Widerlegungszüge werden nun korrekt in der Liste markiert
+   * Variantenbrett: Das Mausrad navigiert jetzt immer durch die Züge, Umschalt+Mausrad rollt die Liste
+   * DGT: Die Zuganzeige auf der DGT-Uhr war in manchen Fällen zu kurz
+   * DGT-Brett: Wenn die Stellung dieselbe auf dem DGT-Brett wie in Arena ist, können Sie nun die Partie weiterspielen, die Partie wird nicht beim Start der DGT-Brett-Unterstützung in Arena automatisch gelöscht
+   * Markierungen mit sehr dicken Rändern können nun nicht mehr über die Feldgrenzen hinausragen
+   * Optimierungen für sehr kleine Brettgrößen
+
+
+Arena 3.5, 2014-01-01 / Public Release
+   * Hilfedateien aktualisiert
+   * Horizontaler Rollbalken für die Hauptvarianten
+   * Variante an Partie anhängen: Option im Kontextmenü und vom Variantenbrett
+   * Bugfixe im Variantenbrett
+   * Warnungen wenn zu viel RAM oder zu vile Kerne konfiguriert
+   * Analysezeilen zusätzliche Option: Kiloknoten
+   * Analysezeilen zusätzliche Option: Zeige Anzahl Kerne
+   * Zeige jetzt die Motorenzeit für die Hauptvarianten (früher Anrea-generiert)
+
+Arena 3.0.4, 2013-01-31:
+   * Autoplayer repariert
+   * Standard-Grafikschema ist nun BirchTauri
+   * Tablebases Figurenbuchstaben übersetzt, Gaviota TB Information hinzugefügt
+   * Listen mit schwarzem Hintergrund Fehler entfernt
+   * "Buchzüge wurden nicht angezeigt"- Fehler entfernt
+   * "Motor spielte nicht wenn voriger Zug von Arena Motorenbuch"- Fehler entfernt
+   * Ponder-Anzeige verbessert
+   * "PGN->Neu" Befehl korrekt: "Wähle neue PGN-Datei"-Dialog, jetzt können Sie PGN-Dateien aus der Zwischenablage einfügen
+   * Partiedaten-Filter: Fortschrittsbalken aktualisiert während des Filterns
+   * Man kann jetzt Partien nach Datumsbereichen filtern
+   * "Filter nach einigen Feldern funktionierte nicht"- Fehler entfernt
+   * Turnier Ponder+Buch Fehler entfernt
+   * Motor wird von UCI nach Winboard umgeschaltet, wenn offensichtlich (Wenn Motor "error: uci" sendet, nehmen wir Winboard)
+   * Rechtschreibfehler entfernt
+   * Hilfedatei verbessert (Deutsch leider noch nicht vollständig)
+   * Einige kleinere Fehler beseitigt
+
+Arena 3.0.3, 2013-01-04
+    * Internes Release für Testgruppe
+	* Bug fixes
+    * Fiter (= Suche) Positionen im PGN
+    * PGN-Listen schneller sortieren
+    * Gemeinsame max. CPU-Kerne setzen für UCI Motoren
+	* UCI Filter kann für Analysmodus ausgeschaltet werden
+    * Frühe Remis-Entscheidung(wenn Wert = Null) bei Turnieren
+    * Tablebases Remis-Entscheidung bei Turnieren
+    * Speichern Stellung in EPD-Format
+	* Hole Stellung im The Problemist-Format (www.theproblemist.org) aus Zwischenablage, keine Märchenschachfiguren
+    * Dialoge klarere Gestaltung
+    * Figuren von TrueType-Schriftarten können jetzt auch von Unicode-Schriftarten sein
+    * Motoren können in der Stellung verriegelt werden, Sie können zur Riegelstellung gehen
+    * Motoren können angehalten werden, wenn Sie vorübergehend andere Dinge mit Ihrem PC zu tun haben
+    * Log-Fenster nun schneller und farbig (Farben von Pfeilfarben)
+    * Größenänderbarer Logobereich
+    * Mehr Spieler Grafiken möglich
+      (http://sourceforge.net/projects/scid/files/Player%20Data/Latest%20data, entpacken nach <Arena>\Graphics\Players)
+    * Analysezeilen: Kompakte Variatntenanzeige (zeige Linie nur, wenn erster Zug geändert)
+    * Analysezeilen: Kurzform für Felder (z.B. "T" statt "Tiefe")
+
+Arena 3.0.1, 2011-06-09
+   * PGN loads faster
+   * Rare PGN loading errors fixed
+   * Arena reads short comments (! ? etc) from PGNs, also in PGN book import
+   * Opening classification improved (vergleicht jetzt die Stellung statt die Zugsequenz)
+   * Java engines easier selectable
+   * Arena uses less CPU time in demo and tournament mode
+   * Bugs where tournament area fonts not selectable removed
+   * Bundles engines: Rybka and Spike updated
+   
+  Supported NAGS in PGN for Book import:
+  1    good move (traditional "!")
+  2    poor move (traditional "?")
+  3    very good move (traditional "!!")
+  4    very poor move (traditional "??")
+  7    forced move (all others lose quickly)
+  8    singular move (no reasonable alternatives)
+  9    worst move  
+ 16    White has a moderate advantage
+ 17    Black has a moderate advantage
+ 18    White has a decisive advantage
+ 19    Black has a decisive advantage
+ 20    White has a crushing advantage (Black should resign)
+ 21    Black has a crushing advantage (White should resign)
+ 
+
+
+Arena 3.0, 2010-12-24
+
+   * UCIFilter repariert+verbessert
+   * Beenden von Motoren nachdem ein Turnier beendet wurde funktioniert nun
+   * Man kann nun einen Motor auch im ICS-Modus abschwächen
+   * Hauptvarianten können auch als Varianten gespeichert werden (optional)
+   * Knoten/ sek. funktioniert jetzt für Winboard Motoren
+   * Neue Option für Kiloknoten/Sekunde anstatt Knoten/Sekunde
+   * Startklang nun hörbar
+   * Autoplayer repariert
+   * Wine Turnierbug behoben: Motoren können jetzt neustarten
+   * Wine Schriftartenfehler behoben: Wenn Arial order Courier New nicht verfügbar sind, wähle passende Schriftart, nicht zufällige
+   * Wine Hilfeanzeigeprogramm hinzugefügt als eigener Download
+   * Wine zeigt die Chess Merida Arena Maske nicht an. Maske deaktiviert in Wine, so daß Grafik nicht gestört werden
+   * Wenn keine Schrift "Wingdings" verfügbar (normal in Wine), zeige einfache '+','=' und '-' Zeichen, keine unsinnigen
+   * Inaktive Schaltflächen im Turniermodus nun inaktiv, nicht ausgeblendet
+   * Auto-Analyse: Zusammenfassender Report beginnt mit 1
+   * Auto-Analyse: Fehler entfernt, bei dem Stellungen nicht analysiert wurden
+   * Auto-Analyse: Neue Option für Parameterinformationen in Reportdatei
+   * In der PGN Ausgabe doppelte Resultate in Klammern entfernt, z.B.: {1-0 Arena adjudication} 1-0
+   * Überflüssige "..." nach letztem Zug in PGN entfernt
+   * Winboard Optionen für Speicher ("memory"), CPU-Kerne ("cores") und Tablebase-Pfade ("egtpath") nun global setzbar
+   * Fehler in Comboboxen in Winboard Optionen erntfernt
+   * Option "Große Logos" funktioniert wieder
+
+
+Arena 2.5 beta, 2010-11-18
+
+   * Öffentliche Beta
+   * Hilfedateien angepasst an neue Version
+   * Fehlerbeseitigung für große Schriften
+   * Fehlerbeseitigung bei Neustart
+   * Anpassungen für Kompatibilität zu 64-Bit Systemen
+   
+   * Die wichtigsten Änderungen zur letzten öffentlichen Version 2.0.1:
+     * Maximal 8 Motoren können gleichzeitig laufen statt bisher 3 
+	 * Endspieldatenbanken (Tablebases)
+	 * Bessere Kompatibilität zu Linux/WINE
+	 * Erweiterte Möglichkeiten, den letzten Zug zu markieren, z.B. mit Pfeil
+	 * Oberfläche passt sich an das Windows-Theme an
+	 
+   * bekannte Fehler/Einschränkungen:
+	* Option "Große Logos" funktioniert nicht 
+	* Betriebsystem Windows XP oder Wine 1.0 oder höher notwendig
+	* NAGs über Nr. 24 funktionieren nicht
+
+Arena 2.4.0, 2010-11-02
+
+   * Internes Release für Testgruppe
+   Arena 2.4.0 Probleme gefixt/neue Funktionen:
+   * Oberfläche wird durch Windows-Theme beeinflusst (wenn die Datei "Arena.exe.manifest" vorhanden)
+   * Antialiasing für die Pfeile und Markierungen
+   * Viele neue Möglichkeiten, den aktuellen Zug zu markieren
+   * Neu: Nächster Zug-Markierung
+   * Schriftart und Farbe für Dialoge einstellbar
+   * Einstellbar, wann 50-Züge Regel angewandt wird
+   * Hintergrund des Motornamens im Analysebereich wie Pfeilfarbe einstellbar (unter "Analyseanzeigen konfigurieren")
+   * Einige Icons neu
+   * Motoren nebeneinander (Kontextmenü der Motoren -> Anzeige -> Zwei Spalten)
+   * Aggregierte Darstellung der Motoren-Ausgaben (Kontextmenü der Motoren -> Aggregierte Darstellung)
+   * Support für Gaviota Tablebases Fehler beseitigt
+   * Änderung: Gaviota-Motor muß jetzt gaviota.tb heissen (nicht gaviota.exe), um doppelten Start desselben Motors zu vermeiden
+   * "Ablage" in "Temp" umbenannt
+   * Uhrengröße skaliert automatisch mit der Größe des Bereiches
+   * Größe der geschlagenen Figuren skaliert automatisch mit der Größe des Bereiches
+   * Zusätzliche Wartezeit beim Starten von Motoren einstellbar
+   * TLCV-kompatibeles Logging unter Motoren -> Protokoll-Fenster
+   * ICS Zeitmanagement funktioniert besser
+   * EPD-Analyse-Fehler entfernt
+   * Gleitende Figuren unter Linux/Wine
+   * Einige nützliche Befehle unter im Hauptmenü unter "Extras" und "Hilfe" eingefügt
+
+
+Arena 2.0.6, 2010-07-02
+
+   * Internes Release für Testgruppe
+   Arena 2.0.6 Probleme gefixt/neue Funktionen:
+   * Support für Gaviota Tablebases
+   * Motoren in ICS funktionieren
+   * EPD-List einige Fehler entfernt
+
+
+Arena 2.0.5, 2010-06-21
+
+   * Internes Release für Testgruppe
+   Arena 2.0.5 Probleme gefixt/neue Funktionen:
+
+   Oberfläche:
+   Mix-Tab-Breite (neben Movelist/Book) wird jetzt gespeichert
+   Dicke der Umradung um die Zugliste jetzt dünner
+   Im Hauptmenü jetzt 8 Motoren einstellbar
+   HTML-Editor setzbar in Optionen -> Oberfläche -> Sonstiges
+
+   Analyse: 
+   Analyse startet "on the fly" neu, wenn Analyse-Konfiguration geändert.
+
+   Demo:
+   Multi-Demo bei Rechtsklick auf Demo-Schaltfläche funktioniert jetzt
+
+   Turnier:
+   CPU-Belastung verringert
+   Tunrnier-Abbrechen Abfrage:  kein eigener Dialog, sondern im Turnierfenster
+   gauntlet tournament:auto-rotate board option
+   rechte Maustaste auf Scrollbalken -> Scroll here etc Kontextmenü erscheint nicht mehr
+   Early Draw/Frühes Remis: einstellbar
+   HTML-Editor aufrufbar von Turnierdialog -> Speichern
+
+   ICS:
+   ICS-Portangabe nach Server funktioniert jetzt z.B.: server.org:9000
+   Wenn mit Motor: set 1 This is a computer account wird nun korrekt gesendet
+   Nach Beenden des ICS-Modus werden keine leeren Motorenbereiche mehr angezeigt.
+
+   Fehlersuchfenster:
+   Optionen/ Logging neu gestaltet
+   Logging: einfacher konfigurierbar
+   Logging: Schreiben der Datei arena.debug auch nach mehreren Zeilen möglich statt wie bisher 
+   immer nur nach jeder Zeile
+   Logging: Reales Datum/Zeit kann mitprotokolliert werden
+
+   Konfiguration:
+   PVListbox wird nicht mehr in arenagui.cfg gespeichert   
+   
+
+Arena 2.0.1, 2009-01-18
+
+ * Bestzug-Statistik-Status auch für Motor eins gespeichert
+ * Bessere Darstellungsqualität für TrueType-Figuren, wenn unter Windows Kantenglättung ausgeschaltet ist
+ * Farbänderungen in den Analysezeilen werden für Motoren eins und zwei sofort angewendet 
+ * Materialdifferenzanzeige wird entsprechend der Brettorientierung umgeschaltet
+ * Analysezeilen von Crafty erscheinen wieder
+ * Leichte Schatten beim Ziehen von TrueType-Figuren sind jetzt verschwunden
+ * Englische Übersetzung für russische Codepage hinzugefügt
+ * Ziehen und ablegen für die EPD-Liste kann jetzt deaktiviert werden (besser for das Arbeiten unter Wine)
+  
+
+Arena 2.0, 2008-12-22
+
+    * Unterstützung Schachserver (ICS) vereinfacht und verbessert
+    * Farbschemata speicherbar
+    * Neuer Geschwindigkeitstest
+    * Zeit auf den Uhren korrigierbar
+    
+Arena 1.99beta5,  2008-02-09
+
+    * Beim Drucken können jetzt auch andere Schriftarten für das Schachbrett verwendet werden als für die Bildschirmdarstellung
+    * PGN Felder können schreibgeschützt werden
+    * Man kann auswählen, welche PGN Felder gespeichert werden
+    * Option: Lade letzte PGN beim Starten von Arena
+    * Sicherheitsabfrage, wenn nicht gespeicherte Partie verloren gehen würde
+    * Neuer Dialog zum Laden von Motoren
+    * Einfach Piepstöne über den PC Lautsprecher, z.B.: beep: 520:100 (Hz:milliseconds), 
+	  eintragen statt Klangdatei
+    * %ArenaDrive% steht nun in Konfigurationsdateien für das Arena-Laufwerk,
+      also z.B. "C:" Dadurch sind ArenaENG.cfg und ArenaGUI.cfg, die mit dieser Version
+      erstellt worden sind, nicht mehr mit älteren Versionen von Arena verwendbar.
+
+Arena 1.99beta4, 2007-03-31
+
+    * Automatische Analyse erweitert und verbessert, z.B. feste Suchtiefe möglich
+    * Pro Deo kann jetzt Arena-Logdateien der automatischen Analyse analysieren, siehe Ed Schröders Seite
+    * Festes Zugformat für die Zugliste wiedereingeführt
+    * Drucken, auch mit mehreren Schriftarten für die Brettdarstellung als bei früheren Versionen
+    * Unterstützung für den Novag Citrine
+    * Turnier-Dateinamen individuell einstellbar
+    * Ein paar Schriftarten für Turnier-Registerkarten konfigurierbar
+    * Analysezeilen verbessert: Einstellbare Höhe bei mehrerern Motoren, gleiche Hauptvarianten werden entfernt bis auf erste und letzte (schneller für MTDf-Motoren), horizontale Einfärbung
+
+Arena 1.99beta3, 2006-11-08
+
+    * Zwei neue Funktionen zum Zurückspeichern in und Neuladen aus PGN-Datei
+    * Die Werkzeugleiste kann jetzt beliebig geordnet werden
+
+Arena 1.99beta2, 2006-01-20
+
+    * Turniere sollten jetzt korrekt laufen
+    * DGT und Autoplayer repariert
+    * Turniertabelle im HTML-Format verbessert
+
+Arena 1.99beta1,2005-12-23
+
+    * Neue Schachbrettdarstellung mit vielen Funktionen
+    * Neue Zugliste, die auch Varianten unterstützt
+    * Anzeige bedrohter Figuren
+    * Verwaltungsfunktionen für PGN-Dateien wie kopieren, löschen etc. (Bitte Vorsicht, Beta Version!)
+    * Erweiterte Konfigurationsmöglichkeiten
+    * Farbschemata
+    * Jetzt Analyse mit drei Motoren gleichzeitig möglich
+    * Verwendung von Konfigurationsdateien, nicht der Registrierungsdatenbank
+
+Arena Version 1.1, 2004-12-17
+
+    * komplett neue Ansicht der Analysezeilen.
+    * Materialdifferenz kann angezeigt werden.
+    * UCI-2 Unterstützung, daher bei entsprechenden Motoren die Möglichkeit, die Spielstärke zu begrenzen, Widerlegungen zu berechnen u. A.
+    * neue Zuglisten-Ansichten.
+    * für Winboard-Motoren die Möglichkeit, die unterstützten Fähigkeiten zu speichern und in einer Tabelle anzuzeigen.
+    * Erweiterungen beim Stellungsaufbau.
+    * "am"-tag für die EPD Analyse wird unterstützt.
+    * Möglichkeit, die Arena-Konfiguration zu sichern, neue Backup Funktionen.
+    * Transpositionen für das Eröffnungsbuch.
+    * Unterstützung der DGT-XL Schachuhr.
+    * spezieller Support for Prodeo ("set-up position" und "current move").
+    * spezieller Support for CraftySE im UCI-Modus (Anzeige der Persönlichkeit).
+    * Viele weitere Kleinigkeiten hinzugefügt oder verbessert.
+
+
+
+Für Hilfestellung bin ich dankbar, vor allem in folgenden Bereichen:
+---------------------------------------------------------------------
+Tester sind willkommen!
+
+Falls jemand eine Übersetzung anfertigen möchte, bitte bei mir melden! Für Arena
+sind schon Übersetzungen in vielen Sprachen erhältlich.
+
+So, und nun viel Spass mit Arena!
+
+Martin Blume
+Hamm, Deutschland
+2008-12-22
+
