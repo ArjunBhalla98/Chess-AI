@@ -28,6 +28,7 @@ def AI_move(board):
 	board.push(m)
 	print(board)
 	print()
+	return str(move)
 print(board)
 
 
@@ -42,7 +43,8 @@ def input_move(board):
 	print(board)
 	print()
 
-def input_uci(board):
+def input_uci():
+	global board
 	message = input("")
 	# with open("log.txt", "a") as myfile:
 	#     myfile.write(move + '\n')
@@ -50,6 +52,7 @@ def input_uci(board):
 	if tokens[0] == 'uci':
 		print("id name EngineTest")
 		print("id author DTD")
+		print('uciok')
 	elif tokens[0] == 'ucinewgame':
 		board = chess.Board()
 	elif tokens[0] == 'position' and len(tokens) == 2 and tokens[1] == 'startpos':
@@ -62,17 +65,25 @@ def input_uci(board):
 		print(board)
 	elif tokens[0] == 'position' and len(tokens) > 2 and tokens[1] == 'fen':
 		board = chess.Board(fen=" ".join(tokens[2:]))
+	elif tokens[0] == 'go':
+		AI_move(board)
+	elif tokens[0] == 'isready':
+		print('readyok')
+	elif tokens[0] == 'setoption':
+		# TODO: We might need to implement some options
+		pass
+	elif tokens[0] == 'deb':
+		print(board)
 	elif tokens[0] == 'quit':
 		quit()
 	else: 
 		print("Unrecognized Command")
 
-
 def temp_game_loop(end, board):
 	
 	while not end:
 		if board.turn:
-			input_uci(board)
+			input_uci()
 		else:
 			AI_move(board)
 
