@@ -52,8 +52,14 @@ def input_uci(board):
 		print("id author DTD")
 	elif tokens[0] == 'ucinewgame':
 		board = chess.Board()
-	elif tokens[0] == 'position' and len(tokens) > 1 and tokens[1] == 'startpos':
+	elif tokens[0] == 'position' and len(tokens) == 2 and tokens[1] == 'startpos':
 		board = chess.Board()
+	elif tokens[0] == 'position' and len(tokens) > 3 and tokens[1] == 'startpos' and tokens[2] == 'moves':
+		moves = tokens[3:]
+		board = chess.Board()
+		for move in moves:
+			board.push(board.parse_uci(move))
+		print(board)
 	elif tokens[0] == 'position' and len(tokens) > 2 and tokens[1] == 'fen':
 		board = chess.Board(fen=" ".join(tokens[2:]))
 	elif tokens[0] == 'quit':
