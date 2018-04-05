@@ -15,22 +15,51 @@ in order to set itself up for play.
 
 """
 
-#Setup Main Board
+# Setup Main Board
 board = chess.Board()
 
+PIECE_VALUES = {
+	"p": 10,
+	"b": 30,
+	"n": 30,
+	"r": 50,
+	"q": 90,
+	"k": 31337,
+	"P": -10,
+	"B": -30,
+	"N": -30,
+	"R": -50,
+	"Q": -90,
+	"K": -31337,
+}
 
-#Choose a move
+# Choose a move
 def AI_move(board):
 	m = ""
-	for move in board.legal_moves: #So this is weird - it's non-subscriptable but it is iterable. Need to figure out how to utilise it better.
-		m = chess.Move.from_uci(str(move)) #Can't find any documentation on it either.
-		break
-	board.push(m)
-	print(board)
-	print()
-	return str(move)
+	bestmove = None
+	bestscore = -999999
+
+	for move in board.legal_moves: 
+		board.push(move)
+		score = evaluate_board(board)
+		if score > bestscore:
+			bestscore = score
+			bestmove = move
+		board.pop()
+
+	board.push(bestmove)
+	return str(bestmove)
+
 print(board)
 
+def evaluate_board(board):
+	score = 0
+	pieces = board.piece_map()
+
+	for piece in pieces.values():
+		score += PIECE_VALUES[piece.symbol()]
+		
+	return score
 
 #######TEMPORARY SECTION - USER INPUT SO WE CAN INTERACT WITH THE ENGINE, WILL 
 #######DISABLE WHEN WE NEED TO CONVERT TO UCI#################
@@ -48,7 +77,6 @@ def input_uci():
 	message = input("")
 	with open("log.txt", "a") as log:
 	    log.write(message + '\n')
-	    log.write(str(board) + '\n\n')
 	tokens = message.split()
 	if tokens[0] == 'uci':
 		print("id name EngineTest")
@@ -77,6 +105,8 @@ def input_uci():
 		pass
 	elif tokens[0] == 'deb':
 		print(board)
+	elif tokens[0] == 'test':
+		print(board.piece_map())	
 	elif tokens[0] == 'quit':
 		quit()
 	else: 
