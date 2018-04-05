@@ -42,11 +42,31 @@ def input_move(board):
 	print(board)
 	print()
 
+def input_uci(board):
+	message = input("")
+	# with open("log.txt", "a") as myfile:
+	#     myfile.write(move + '\n')
+	tokens = message.split()
+	if tokens[0] == 'uci':
+		print("id name EngineTest")
+		print("id author DTD")
+	elif tokens[0] == 'ucinewgame':
+		board = chess.Board()
+	elif tokens[0] == 'position' and len(tokens) > 1 and tokens[1] == 'startpos':
+		board = chess.Board()
+	elif tokens[0] == 'position' and len(tokens) > 2 and tokens[1] == 'fen':
+		board = chess.Board(fen=" ".join(tokens[2:]))
+	elif tokens[0] == 'quit':
+		quit()
+	else: 
+		print("Unrecognized Command")
+
+
 def temp_game_loop(end, board):
 	
 	while not end:
 		if board.turn:
-			input_move(board)
+			input_uci(board)
 		else:
 			AI_move(board)
 
