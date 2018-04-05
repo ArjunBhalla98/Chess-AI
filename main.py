@@ -46,8 +46,9 @@ def input_move(board):
 def input_uci():
 	global board
 	message = input("")
-	# with open("log.txt", "a") as myfile:
-	#     myfile.write(move + '\n')
+	with open("log.txt", "a") as log:
+	    log.write(message + '\n')
+	    log.write(str(board) + '\n\n')
 	tokens = message.split()
 	if tokens[0] == 'uci':
 		print("id name EngineTest")
@@ -66,7 +67,9 @@ def input_uci():
 	elif tokens[0] == 'position' and len(tokens) > 2 and tokens[1] == 'fen':
 		board = chess.Board(fen=" ".join(tokens[2:]))
 	elif tokens[0] == 'go':
-		AI_move(board)
+		print('bestmove ' + AI_move(board))
+	elif tokens[0] == 'stop':
+		print(AI_move(board))
 	elif tokens[0] == 'isready':
 		print('readyok')
 	elif tokens[0] == 'setoption':
