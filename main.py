@@ -1,17 +1,13 @@
 import chess
+import math
 
 """
 TODO:
 
-- Make a more specific TODO list. 
+- Implement more UCI features
+  - Iterative Deepening, to allow a customizable thinking time
 
-- Implement UCI. Essentially, this is the engine and it will
-take input from the GUI for commands like "isready" and "uci" etc.
-in order to set itself up for play.
-
-- Actually write a working algorithm.
-
-- Hook it up to a GUI (this works with the UCI thing)
+- Make it harder, better, faster, & stronger
 
 """
 
@@ -32,39 +28,56 @@ PIECE_VALUES = {
 	"Q": -90,
 	"K": -31337,
 }
+SEARCH_DEPTH = 4
 
 # Choose a move
 def AI_move(board):
-	score, move = search(2, board, False)
+	move = search(board)
 	board.push(move)
 	return str(move)
 
-def search(depth, board, isWhite):
+def search(board):
+	bestscore = -999999
+	bestmove = None
+
+	for move in board.legal_moves: 
+		board.push(move)
+		score = minimax(SEARCH_DEPTH, board, False, -1000000, 1000000)
+		print(score)
+		if score > bestscore:
+			bestscore = score
+			bestmove = move
+		board.pop()
+
+	return bestmove
+
+
+def minimax(depth, board, isWhite, alpha, beta):
 	if depth == 0:
-		return evaluate_board(board), None
+		return evaluate_board(board)
 	bestmove = None
 	if not isWhite:
 		bestscore = -999999
 		for move in board.legal_moves: 
 			board.push(move)
-			score, _ = search(depth - 1, board, not isWhite)
-			if score > bestscore:
-				bestscore = score
-				bestmove = move
+			score = minimax(depth - 1, board, not isWhite, alpha, beta)
+			bestscore = max(bestscore, score)
 			board.pop()
-		return bestscore, bestmove
+			alpha = max(alpha, bestscore)
+			if beta <= alpha:
+				return bestscore
+		return bestscore
 	else: 
 		bestscore = 999999
 		for move in board.legal_moves: 
 			board.push(move)
-			score, _ = search(depth - 1, board, not isWhite)
-			if score < bestscore:
-				bestscore = score
-				bestmove = move
+			score = minimax(depth - 1, board, not isWhite, alpha, beta)
+			bestscore = min(bestscore, score)
 			board.pop()
-		return bestscore, bestmove
-
-print(board)
+			beta = min(beta, bestscore)
+			if beta <= alpha:
+				return bestscore
+		return bestscore
 
 def evaluate_board(board):
 	score = 0
@@ -75,16 +88,6 @@ def evaluate_board(board):
 
 	return score
 
-#######TEMPORARY SECTION - USER INPUT SO WE CAN INTERACT WITH THE ENGINE, WILL 
-#######DISABLE WHEN WE NEED TO CONVERT TO UCI#################
-end = False
-
-def input_move(board):
-	move = input("Input move (UCI 4 char str ONLY):\n")
-	move = chess.Move.from_uci(move)
-	board.push(move)
-	print(board)
-	print()
 
 def input_uci():
 	global board
@@ -100,7 +103,8 @@ def input_uci():
 		board = chess.Board()
 	elif tokens[0] == 'position' and len(tokens) == 2 and tokens[1] == 'startpos':
 		board = chess.Board()
-	elif tokens[0] == 'position' and len(tokens) > 3 and tokens[1] == 'startpos' and tokens[2] == 'moves':
+	elif tokens[0] == 'position' and len(tokens) > 3 \
+	and tokens[1] == 'startpos' and tokens[2] == 'moves':
 		moves = tokens[3:]
 		board = chess.Board()
 		for move in moves:
@@ -126,13 +130,6 @@ def input_uci():
 	else: 
 		print("Unrecognized Command")
 
-def temp_game_loop(end, board):
-	
-	while not end:
-		if board.turn:
-			input_uci()
-		else:
-			AI_move(board)
-
-if __name__ == "__main__":
-	temp_game_loop(False, board)
+print(board)
+while True:
+	input_uci()
