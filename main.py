@@ -35,20 +35,34 @@ PIECE_VALUES = {
 
 # Choose a move
 def AI_move(board):
-	m = ""
+	score, move = search(2, board, False)
+	board.push(move)
+	return str(move)
+
+def search(depth, board, isWhite):
+	if depth == 0:
+		return evaluate_board(board), None
 	bestmove = None
-	bestscore = -999999
-
-	for move in board.legal_moves: 
-		board.push(move)
-		score = evaluate_board(board)
-		if score > bestscore:
-			bestscore = score
-			bestmove = move
-		board.pop()
-
-	board.push(bestmove)
-	return str(bestmove)
+	if not isWhite:
+		bestscore = -999999
+		for move in board.legal_moves: 
+			board.push(move)
+			score, _ = search(depth - 1, board, not isWhite)
+			if score > bestscore:
+				bestscore = score
+				bestmove = move
+			board.pop()
+		return bestscore, bestmove
+	else: 
+		bestscore = 999999
+		for move in board.legal_moves: 
+			board.push(move)
+			score, _ = search(depth - 1, board, not isWhite)
+			if score < bestscore:
+				bestscore = score
+				bestmove = move
+			board.pop()
+		return bestscore, bestmove
 
 print(board)
 
@@ -58,7 +72,7 @@ def evaluate_board(board):
 
 	for piece in pieces.values():
 		score += PIECE_VALUES[piece.symbol()]
-		
+
 	return score
 
 #######TEMPORARY SECTION - USER INPUT SO WE CAN INTERACT WITH THE ENGINE, WILL 
