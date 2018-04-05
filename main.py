@@ -1,6 +1,6 @@
 import chess
 import math
-
+from evaluate import *
 """
 TODO:
 
@@ -13,30 +13,11 @@ TODO:
 
 # Setup Main Board
 board = chess.Board()
-
-PIECE_VALUES = {
-	"p": 10,
-	"b": 30,
-	"n": 30,
-	"r": 50,
-	"q": 90,
-	"k": 31337,
-	"P": -10,
-	"B": -30,
-	"N": -30,
-	"R": -50,
-	"Q": -90,
-	"K": -31337,
-}
 SEARCH_DEPTH = 4
+
 
 # Choose a move
 def AI_move(board):
-	move = search(board)
-	board.push(move)
-	return str(move)
-
-def search(board):
 	bestscore = -999999
 	bestmove = None
 
@@ -49,7 +30,8 @@ def search(board):
 			bestmove = move
 		board.pop()
 
-	return bestmove
+	board.push(bestmove)
+	return str(bestmove)
 
 
 def minimax(depth, board, isWhite, alpha, beta):
@@ -79,56 +61,51 @@ def minimax(depth, board, isWhite, alpha, beta):
 				return bestscore
 		return bestscore
 
-def evaluate_board(board):
-	score = 0
-	pieces = board.piece_map()
-
-	for piece in pieces.values():
-		score += PIECE_VALUES[piece.symbol()]
-
-	return score
-
 
 def input_uci():
 	global board
+
 	message = input("")
 	with open("log.txt", "a") as log:
 	    log.write(message + '\n')
 	tokens = message.split()
-	if tokens[0] == 'uci':
-		print("id name EngineTest")
-		print("id author DTD")
-		print('uciok')
-	elif tokens[0] == 'ucinewgame':
-		board = chess.Board()
-	elif tokens[0] == 'position' and len(tokens) == 2 and tokens[1] == 'startpos':
-		board = chess.Board()
-	elif tokens[0] == 'position' and len(tokens) > 3 \
-	and tokens[1] == 'startpos' and tokens[2] == 'moves':
-		moves = tokens[3:]
-		board = chess.Board()
-		for move in moves:
-			board.push(board.parse_uci(move))
-		print(board)
-	elif tokens[0] == 'position' and len(tokens) > 2 and tokens[1] == 'fen':
-		board = chess.Board(fen=" ".join(tokens[2:]))
-	elif tokens[0] == 'go':
-		print('bestmove ' + AI_move(board))
-	elif tokens[0] == 'stop':
-		print(AI_move(board))
-	elif tokens[0] == 'isready':
-		print('readyok')
-	elif tokens[0] == 'setoption':
-		# TODO: We might need to implement some options
-		pass
-	elif tokens[0] == 'deb':
-		print(board)
-	elif tokens[0] == 'test':
-		print(board.piece_map())	
-	elif tokens[0] == 'quit':
-		quit()
-	else: 
-		print("Unrecognized Command")
+
+	if len(tokens) > 0:
+		if tokens[0] == 'uci':
+			print("id name EngineTest")
+			print("id author DTD")
+			print('uciok')
+		elif tokens[0] == 'ucinewgame':
+			board = chess.Board()
+		elif tokens[0] == 'position' and len(tokens) == 2 and tokens[1] == 'startpos':
+			board = chess.Board()
+		elif tokens[0] == 'position' and len(tokens) > 3 \
+		and tokens[1] == 'startpos' and tokens[2] == 'moves':
+			moves = tokens[3:]
+			board = chess.Board()
+			for move in moves:
+				board.push(board.parse_uci(move))
+			print(board)
+		elif tokens[0] == 'position' and len(tokens) > 2 and tokens[1] == 'fen':
+			board = chess.Board(fen=" ".join(tokens[2:]))
+		elif tokens[0] == 'go':
+			print('bestmove ' + AI_move(board))
+		elif tokens[0] == 'stop':
+			print(AI_move(board))
+		elif tokens[0] == 'isready':
+			print('readyok')
+		elif tokens[0] == 'setoption':
+			# TODO: We might need to implement some options
+			pass
+		elif tokens[0] == 'deb':
+			print(board)
+		elif tokens[0] == 'test':
+			print(board.piece_map())	
+		elif tokens[0] == 'quit':
+			quit()
+		else: 
+			print("Unrecognized Command")
+
 
 print(board)
 while True:
