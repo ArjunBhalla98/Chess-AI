@@ -13,7 +13,7 @@ TODO:
 
 # Setup Main Board
 board = chess.Board()
-SEARCH_DEPTH = 4
+SEARCH_DEPTH = 2
 
 
 # Choose a move
