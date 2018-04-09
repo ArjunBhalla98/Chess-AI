@@ -143,14 +143,9 @@ def evaluate_board(board):
             square)][chess.square_file(square)]
         # If the piece is white
         if symbol.isupper():
-            # print("Piece Value: " + str(PIECE_VALUES[symbol.lower()]) +
-            #       ", Positional Weight: " + str(position_weight))
-            # print("Score Delta: -" +
-                #   str(PIECE_VALUES[symbol.lower()] + position_weight))
             score -= PIECE_VALUES[symbol.lower()] + position_weight
         else:
             score += PIECE_VALUES[symbol.lower()] + position_weight
-            # print("Score Delta: " +
-            #   str(PIECE_VALUES[symbol.lower()] + position_weight))
+
     # print(score)
     return score
