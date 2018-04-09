@@ -23,41 +23,33 @@ def AI_move(board):
 
     for move in board.legal_moves:
         board.push(move)
-        print("info depth " + str(SEARCH_DEPTH))
         score = minimax(SEARCH_DEPTH - 1, board, True, -1000000, 1000000)
-        print("Move Score: " + str(score))
         if score > bestscore:
             bestscore = score
             bestmove = move
         board.pop()
 
     board.push(bestmove)
-    print("BEST CASE: " + str(bestscore))
     print(board)
     return str(bestmove)
 
 
 def minimax(depth, board, isWhite, alpha, beta):
     if depth == 0:
-        # print(board)
-        print("info currmove "
-              + " ".join(str(mov) for mov in board.move_stack))
-        print ("DEPTH 0 result: " + str(evaluate_board(board)))
+        # print("info currmove "
+            #   + " ".join(str(mov) for mov in board.move_stack))
         return evaluate_board(board)
     bestmove = None
     if not isWhite:  # BLACK
         bestscore = -999999
         for move in board.legal_moves:
             board.push(move)
-            print(board)
             score = minimax(depth - 1, board, not isWhite, alpha, beta)
             bestscore = max(bestscore, score)
             board.pop()
             alpha = max(alpha, bestscore)
             if beta <= alpha:
-                print("Black returning: " + str(bestscore))
                 return bestscore
-        print("Black returning: " + str(bestscore))
         return bestscore
     else:  # WHITE
         bestscore = 999999
@@ -68,9 +60,7 @@ def minimax(depth, board, isWhite, alpha, beta):
             board.pop()
             beta = min(beta, bestscore)
             if beta <= alpha:
-                print("White returning: " + str(bestscore))
                 return bestscore
-        print("White returning: " + str(bestscore))
         return bestscore
 
 
