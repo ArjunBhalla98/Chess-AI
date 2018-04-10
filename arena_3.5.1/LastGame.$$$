@@ -1,24 +1,28 @@
-[LastMove "44"]
+[LastMove "72"]
 [Event "Computer chess game"]
 [Site "DESKTOP-14L51IB"]
-[Date "2018.04.06"]
+[Date "2018.04.09"]
 [Round "?"]
-[White "Chess [002]"]
-[Black "Chess [002]"]
-[Result "1-0"]
+[White "Arjun Bhalla"]
+[Black "Chess [003]"]
+[Result "0-1"]
 [BlackElo "2000"]
-[ECO "A00"]
-[Opening "Barnes (Gedult) Opening"]
-[Time "13:30:42"]
-[WhiteElo "2000"]
-[TimeControl "300"]
-[Termination "time forfeit"]
-[PlyCount "43"]
-[WhiteType "program"]
+[ECO "B00"]
+[Opening "Nimzowitsch Defence"]
+[Time "15:41:56"]
+[Variation "2.Nc3"]
+[WhiteElo "2400"]
+[TimeControl "900"]
+[Termination "normal"]
+[PlyCount "72"]
+[WhiteType "human"]
 [BlackType "program"]
 
-1. f3 Nf6 2. h4 Nc6 3. g4 Nxg4 4. Rh2 Nxh2 5. b4 Nxf1 6.
-a4 Nxd2 7. Ra2 Nxb1 8. Qd6 e6 9. c4 Nxb4 10. Rc2 Nc3 11. e4 Nxe4 12. f4 Qf6
-13. Qd4 Ke7 14. Nh3 Qxf4 15. Kd1 Nxc2 16. Ke2 Qxc1 17. Qe3 Kf6 18. Ng5 Nxg5
-19. Qd3 Be7 20. h5 Qb2 21. Qd4+ Kf5 22. c5 ... {Black forfeits on time} 1-0
+1. e4 Nc6 2. Nc3 Nd4 3. f3 e5 4. b3 Qh4+ 5. g3 Qg5 6. f4
+exf4 7. Nd5 Qe5 8. Nxf4 Qxe4+ 9. Kf2 Qxh1 10. c3 Qxh2+ 11. Bg2 Nf5 12. Qg4
+Ngh6 13. Qh5 Qxg3+ 14. Ke2 Qxf4 15. a3 Ng3+ 16. Kd1 Nxh5 17. d3 Qg4+ 18.
+Bf3 Qxg1+ 19. Kc2 Qf2+ 20. Bd2 Qxf3 21. Re1+ Kd8 22. Re3 Qg2 23. b4 Nf6 24.
+Re5 Nhg4 25. Rf5 Ne3+ 26. Kc1 Nxf5 27. c4 d5 28. c5 Nd4 29. a4 Nb3+ 30. Kc2
+Nxd2 31. Kd1 Bf5 32. Ke1 Bg4 33. b5 Rg8 34. c6 Rh8 35. cxb7 Ke7 36. bxa8=Q
+Qe2# 0-1
 
