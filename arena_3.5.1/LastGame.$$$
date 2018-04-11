@@ -1,28 +1,19 @@
-[LastMove "72"]
+[LastMove "112"]
 [Event "Computer chess game"]
 [Site "DESKTOP-14L51IB"]
-[Date "2018.04.09"]
+[Date "2018.04.10"]
 [Round "?"]
 [White "Arjun Bhalla"]
 [Black "Chess [003]"]
-[Result "0-1"]
+[Result "*"]
 [BlackElo "2000"]
-[ECO "B00"]
-[Opening "Nimzowitsch Defence"]
-[Time "15:41:56"]
-[Variation "2.Nc3"]
+[Time "18:44:35"]
 [WhiteElo "2400"]
 [TimeControl "900"]
-[Termination "normal"]
-[PlyCount "72"]
+[Termination "unterminated"]
+[PlyCount "0"]
 [WhiteType "human"]
 [BlackType "program"]
 
-1. e4 Nc6 2. Nc3 Nd4 3. f3 e5 4. b3 Qh4+ 5. g3 Qg5 6. f4
-exf4 7. Nd5 Qe5 8. Nxf4 Qxe4+ 9. Kf2 Qxh1 10. c3 Qxh2+ 11. Bg2 Nf5 12. Qg4
-Ngh6 13. Qh5 Qxg3+ 14. Ke2 Qxf4 15. a3 Ng3+ 16. Kd1 Nxh5 17. d3 Qg4+ 18.
-Bf3 Qxg1+ 19. Kc2 Qf2+ 20. Bd2 Qxf3 21. Re1+ Kd8 22. Re3 Qg2 23. b4 Nf6 24.
-Re5 Nhg4 25. Rf5 Ne3+ 26. Kc1 Nxf5 27. c4 d5 28. c5 Nd4 29. a4 Nb3+ 30. Kc2
-Nxd2 31. Kd1 Bf5 32. Ke1 Bg4 33. b5 Rg8 34. c6 Rh8 35. cxb7 Ke7 36. bxa8=Q
-Qe2# 0-1
+ *
 
