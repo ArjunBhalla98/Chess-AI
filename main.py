@@ -1,6 +1,7 @@
 import chess
 import math
 from evaluate import *
+import pickle
 """
 TODO:
 
@@ -110,5 +111,49 @@ def input_uci():
 
 
 print(board)
+
+######################################## Monte Carlo Reinforcement Learning METHODS ####################################################
+def init_dicts():
+	with open("state_actions.pickle", "wb") as handle:
+		pickle.dump({}, handle, protocol = pickle.HIGHEST_PROTOCOL)
+
+def q_function(action, board):
+	current_score = evaluate.evaluate_board(board)
+	board.push(action)
+	new_score = evaluate.evaluate_board(board)
+	board.pop(action)
+	reward = new_score - current_score
+
+	with open("state_actions.pickle", "rb") as handle:
+		sa_dict = pickle.load(handle)
+
+	b_fen = board.board_fen()
+	if b_fen not in sa_dict:
+		sa_dict[b_fen] = {action:reward}
+	else:
+		if action not in sa_dict[b_fen]:
+			sa_dict[b_fen][action] = reward
+		else: # move already in dictionary
+			sa_dict[b_fen][action] = (sa_dict[b_fen][action] + reward)/2
+
+	with open("state_actions.pickle", "wb") as handle:
+		pickle.dump(sa_dict, handle, protocol = pickle.HIGHEST_PROTOCOL)
+
+def pi_function(board):
+
+	with open("state_actions.pickle", "rb") as handle:
+		sa_dict = pickle.load(handle)
+
+	b_fen = board.board_fen()
+
+	if b_fen in sa_dict:
+		max_reward = -9999
+		for move in sa_dict[b_fen]:
+			if sa_dict[b_fen][move] > max_reward:
+				max_reward = sa_dict[b_fen][move]
+	else:
+		return None
+
+
 while True:
     input_uci()
