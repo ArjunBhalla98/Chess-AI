@@ -16,7 +16,7 @@ TODO:
 # Setup Main Board
 board = chess.Board()
 SEARCH_DEPTH = 4
-EPSILON_VALUE = 0.05
+EPSILON_VALUE = 0.1
 REWARDS = {"1-0": 1, "0-1": -1, "1/2-1/2": 0}
 LEARNING_RATE = 0.75
 
@@ -28,7 +28,7 @@ board_minimax_scores_black = {}
 
 # Choose a move
 def AI_move(board):
-    bestscore = -99999999999999999
+    bestscore = -999999
     bestmove = None
     moves = []
 
@@ -36,7 +36,8 @@ def AI_move(board):
         board.push(move)
         score = minimax(SEARCH_DEPTH - 1, board, True, -1000000, 1000000)
         moves.append((move, score))
-        if score > bestscore:
+        print(move, score)
+        if score >= bestscore:
             bestscore = score
             bestmove = move
         board.pop()
@@ -48,18 +49,20 @@ def AI_move(board):
     	bestscore = best[1]
     	bestmove = best[0]
 
-    b_fen = board.board_fen()
+    b_fen = board.fen()
     if board.turn == chess.WHITE:
         board_minimax_scores[b_fen] = bestscore
     else:
         board_minimax_scores_black[b_fen] = bestscore
 
-
-    board.push(bestmove)
+    if bestmove != None:
+        board.push(bestmove)
+    else:
+        board.push(random.choice(moves))
 
     if board.is_game_over():
         print("YEETH")
-        update_weights(board)
+        update_weights()
 
     print(board)
     return str(bestmove)
@@ -69,9 +72,6 @@ def minimax(depth, board, isWhite, alpha, beta):
     if depth == 0:
         # print("info currmove "
             #   + " ".join(str(mov) for mov in board.move_stack))
-        if isWhite:
-            return -1*evaluate_board(board)
-        else:
             return evaluate_board(board)
     bestmove = None
     if not isWhite:  # BLACK
@@ -147,47 +147,62 @@ def input_uci():
 print(board)
 
 
-def update_weights(board):
+def update_weights():
+
+    board = chess.Board()
 
     with open("position_weights.pickle", "rb") as handle:
         weights_dict = pickle.load(handle)
 
+    with open("piece_weights.pickle", "rb") as handle:
+        pieces_dict = pickle.load(handle)
+
     result = board.result()
-    reward_winner = REWARDS[result]
-    reward_loser = -1*reward_winner
-    print(result)
-    
-    alpha = LEARNING_RATE*reward_winner
-    alpha_opposite = LEARNING_RATE*reward_loser - 0.15 # Don't you worry your little head about that number bud
 
     if result == '1-0': # WHITE WON
+        
+        reward_winner = REWARDS[result]
+        reward_loser = -1*reward_winner
+        print(result)
+        
+        alpha = LEARNING_RATE*reward_winner
+        alpha_opposite = LEARNING_RATE*reward_loser - 0.15 # Don't you worry your little head about that number bud
         for board_fen in board_minimax_scores:
             print(board_fen)
-            brd = board.set_fen(board_fen)
-            for square, piece in brd.piece_map().items():
+            board.set_board_fen(board_fen)
+            for square, piece in board.piece_map().items():
                 symbol = piece.symbol()
                 weights_dict[symbol][chess.square_rank(square)][chess.square_file(square)] += alpha
 
         for board_fen in board_minimax_scores_black:
-            brd = board.set_fen(board_fen)
-            for square, piece in brd.piece_map().items():
+            board.set_board_fen(board_fen)
+            for square, piece in board.piece_map().items():
                 symbol = piece.symbol()
                 weights_dict[symbol][chess.square_rank(square)][chess.square_file(square)] += alpha_opposite
 
     elif result == '0-1':
+        result = board.result()
+        reward_winner = REWARDS[result]
+        reward_loser = -1*reward_winner
+        print(result)
+        
+        alpha = LEARNING_RATE*reward_winner
+        alpha_opposite = LEARNING_RATE*reward_loser - 0.15 # Don't you worry your little head about that number bud
 
         for board_fen in board_minimax_scores_black:
             print(board_fen)
-            brd = board.set_fen(board_fen)
-            for square, piece in brd.piece_map().items():
+            board.set_board_fen(board_fen)
+            for square, piece in board.piece_map().items():
                 symbol = piece.symbol()
                 weights_dict[symbol][chess.square_rank(square)][chess.square_file(square)] += alpha
 
         for board_fen in board_minimax_scores:
-            brd = board.set_fen(board_fen)
-            for square, piece in brd.piece_map().items():
+            board.set_board_fen(board_fen)
+            for square, piece in board.piece_map().items():
                 symbol = piece.symbol()
                 weights_dict[symbol][chess.square_rank(square)][chess.square_file(square)] += alpha_opposite
+    else:
+        pass
 
     with open("positions_weights.pickle", "wb") as handle:
         pickle.dump(weights_dict, handle, protocol = pickle.HIGHEST_PROTOCOL)

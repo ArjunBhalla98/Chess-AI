@@ -11,7 +11,7 @@ PIECE_VALUES = {
     "n": 30,
     "r": 50,
     "q": 90,
-    "k": 31337
+    "k": 200
 }
 
 # PIECE_WEIGHTS = {
@@ -145,9 +145,10 @@ def evaluate_board(board):
         symbol = piece.symbol()
         position_weight = PIECE_WEIGHTS[symbol][chess.square_rank(
             square)][chess.square_file(square)]
+        
         # If the piece is white
         if symbol.isupper():
-            score -= PIECE_VALUES[symbol.lower()] + position_weight
+            score += -1*PIECE_VALUES[symbol.lower()] + position_weight
         else:
             score += PIECE_VALUES[symbol.lower()] + position_weight
 
@@ -155,9 +156,8 @@ def evaluate_board(board):
     return score
 
 def pickle_weights():
-    with open("position_weights.pickle", "rb") as handle:
-        # pickle.dump(PIECE_WEIGHTS, handle, protocol = pickle.HIGHEST_PROTOCOL)
-        a = pickle.load(handle)
-    print(a)
+    # with open("piece_weights.pickle", "wb") as handle:
+    #     pickle.dump(PIECE_VALUES, handle, protocol = pickle.HIGHEST_PROTOCOL)
+    pass
 
 pickle_weights()
