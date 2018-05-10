@@ -1,7 +1,7 @@
-[LastMove "16"]
+[LastMove "23"]
 [Event "Computer chess game"]
 [Site "DESKTOP-14L51IB"]
-[Date "2018.05.08"]
+[Date "2018.05.09"]
 [Round "?"]
 [White "Chess [004]"]
 [Black "Chess [004]"]
@@ -9,14 +9,15 @@
 [BlackElo "2000"]
 [ECO "A00"]
 [Opening "Barnes (Gedult) Opening"]
-[Time "16:14:11"]
+[Time "21:45:18"]
 [WhiteElo "2000"]
 [TimeControl "900"]
 [Termination "unterminated"]
-[PlyCount "16"]
+[PlyCount "23"]
 [WhiteType "program"]
 [BlackType "program"]
 
-1. f3 Nf6 2. g3 Nc6 3. Bh3 d5 4. Bd7+ Bxd7 5. c3 Bf5 6.
-Qa4 Bxb1 7. Qg4 Nxg4 8. b3 Bf5 *
+1. f3 Nf6 2. g3 Nc6 3. Bh3 h6 4. Bxd7+ Bxd7 5. c3 e5 6.
+Qb3 Na5 7. Qxf7+ Kxf7 8. Kf2 Nc4 9. b3 Nb6 10. Ke3 Kg8 11. Kd3 Bf5+ 12. Ke3
+*
 
